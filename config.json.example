@@ -1,0 +1,15 @@
+{
+    "ovh": {
+        "endpoint": "ovh-eu",
+        "application_key": "your_application_key_here",
+        "application_secret": "your_application_secret_here",
+        "consumer_key": "your_consumer_key_here"
+    },
+    "domains": [
+        {
+            "zone": "example.com",
+            "subdomain": "home",
+            "ttl": 300
+        }
+    ]
+}
