@@ -1,0 +1,29 @@
+[Unit]
+Description=OVH Dynamic DNS Update
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/ovh-dynamic-dns --config /etc/ovh-dynamic-dns/config.json
+
+# State directory for IP cache (creates /var/lib/ovh-dynamic-dns, writable)
+StateDirectory=ovh-dynamic-dns
+
+# Sandboxing
+ProtectSystem=strict
+ProtectHome=tmpfs
+PrivateTmp=yes
+PrivateDevices=yes
+NoNewPrivileges=yes
+ProtectKernelTunables=yes
+ProtectKernelModules=yes
+ProtectControlGroups=yes
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+MemoryDenyWriteExecute=yes
+LockPersonality=yes
+CapabilityBoundingSet=
+ReadOnlyPaths=/etc/ovh-dynamic-dns /usr/local/bin/ovh-dynamic-dns
